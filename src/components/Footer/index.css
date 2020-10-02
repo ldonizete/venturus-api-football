@@ -1,0 +1,19 @@
+.footer{
+  background: #e9e3e9;
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+  font-size: 12px;
+}
+
+.phantom {
+  display: block;
+  height: 60px;
+  width: 100%;
+}
+
+p{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

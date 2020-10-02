@@ -1,0 +1,41 @@
+.painelMyTeams{
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 0.1em rgb(226, 226, 226),  0 0 0.1em rgb(226, 226, 226);
+  width: 50%;
+}
+
+.rowMyteamsTitle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1{
+  padding-left: 5%;
+  color: #552c8a;
+  font-weight: bolder;
+}
+
+.btAddTeams{
+  background: linear-gradient(0deg,#853481 10%, #a8397b 70%);
+  box-shadow: 0 0.4em 1em #f378e1;
+  height: 40px;
+  width: 40px;
+  border-radius: 13px;
+  border: 0px;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.linkBtnTeams{
+  padding-right: 5%;
+}
+
+hr{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1); 
+}
