@@ -1,0 +1,38 @@
+.painel{
+  margin-top: 20px;
+  position: relative;
+  background: linear-gradient(0deg, rgba(139,32,111,1) 60%, rgba(192,14,79,1) 100%);
+  border-radius: 10px;
+}
+
+.rowPicked {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.meioCampo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.painel h2{
+  color:white;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 30%;
+}
+
+.circle {
+  border: solid 1px  #ba76a3;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.line {
+  position: absolute;
+  border-right: solid 1px #ba76a3;
+  height: 100%;
+}

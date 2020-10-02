@@ -6,6 +6,11 @@
   box-shadow: 0 0 0.1em rgb(226, 226, 226),  0 0 0.1em rgb(226, 226, 226);
 }
 
+.colTOP{
+  display: flex;
+  flex-direction: column;
+}
+
 h1{
   padding-left: 5%;
   color: #552c8a;

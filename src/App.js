@@ -52,6 +52,8 @@ class App extends Component {
       playersTeams = apiPlayers.data.api.players;
 
       teams[i].players = [];
+      teams[i].description = teams[i].venue_name;
+      
       
       teamsAndPlayers.push(teams[i]);
       teamsAndPlayers[i].players.push(playersTeams);

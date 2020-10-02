@@ -9,6 +9,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
+import IconDelete from './IconButton/Delete';
+import IconEdit from './IconButton/Edit';
+import './index.css';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -159,7 +162,6 @@ export default function EnhancedTable(props) {
     setSelected(newSelected);
   };
 
-
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -204,7 +206,10 @@ export default function EnhancedTable(props) {
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.description}</TableCell>
-                      <TableCell align="right">edit</TableCell>
+                      <TableCell className="cellAction">
+                        <IconDelete />
+                        <IconEdit />
+                      </TableCell>
                     </TableRow>
                   );
                 })}

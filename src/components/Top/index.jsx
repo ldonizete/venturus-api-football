@@ -1,6 +1,8 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 import './index.css';
+import Pickedplayer from '../Picked-player';
+
 
 
 class Top extends React.Component {
@@ -25,23 +27,26 @@ class Top extends React.Component {
       
 
       return(
-        <div className="topPainel">
-          <h1>Top 5</h1>
-          <hr />
-          <div className="row">
-            <div>
-              <h4>Highest avg age</h4>
-              <div className="backgroundList">
-                {rows}
+        <div className="colTOP">
+          <div className="topPainel">
+            <h1>Top 5</h1>
+            <hr />
+            <div className="row">
+              <div>
+                <h4>Highest avg age</h4>
+                <div className="backgroundList">
+                  {rows}
+                </div>
               </div>
-            </div>
-            <div>
-              <h4>Lowest avg age</h4>
-              <div className="backgroundList">
-                {rows}
+              <div>
+                <h4>Lowest avg age</h4>
+                <div className="backgroundList">
+                  {rows}
+                </div>
               </div>
             </div>
           </div>
+          <Pickedplayer/>
         </div>
       );
     }
