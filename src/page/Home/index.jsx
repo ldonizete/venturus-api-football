@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
-import Myteams from '../Myteams';
-import Top from '../Top';
+import Myteams from '../../components/Myteams';
+import Top from '../../components/Top';
 
 function Home(props) {
     return(

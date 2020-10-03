@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Home from './components/Home';
+import Home from './page/Home';
+import Create from './page/Create';
+
 // import api from './services/api';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -72,6 +74,9 @@ class App extends Component {
             <Switch>
               <Route exact path="/">
                 <Home teams={this.state.teams}/>
+              </Route>
+              <Route exact path="/create">
+                <Create />
               </Route>
           </Switch>
           <Footer />
