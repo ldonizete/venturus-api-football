@@ -11,21 +11,57 @@ class Top extends React.Component {
       var teams = this.props.teams;
 
 
-      let rows = []
+      let rowsHigh = []
+      let rowsLow = []
 
       if(teams!=null && teams.length>0)
       {
+        var player = null;
+
+        for(let i=0; i< teams.length; i++)
+        {
+          var countAge =0;
+          var media =0;
+         if(teams[i].players != null && teams[i].players[0].length>0)
+          {
+            for(let k=0; k< teams[i].players[0].length; k++)
+            {
+              player = teams[i].players[0][k];
+              
+              countAge += player.age;
+            }
+            media = (countAge/teams[i].players[0].length);
+          }
+          teams[i].mediaAge = Number(media.toFixed(2));
+        }
+
+        teams.sort((a,b) =>{
+          return b.mediaAge - a.mediaAge;
+        })
+
         for(let i=0; i< 5; i++){
-          rows.push(
+          rowsHigh.push(
             <div key={i} className="divTopNameAge">
               <label>{teams[i].name}</label>
-              {/* <label>{this.times[i].age}</label> */}
+              <label>{teams[i].mediaAge}</label>
+            </div>
+          )
+        }
+
+        teams.sort((a,b) =>{
+          return a.mediaAge - b.mediaAge;
+        })
+
+        for(let i=0; i< 5; i++){
+          rowsLow.push(
+            <div key={i} className="divTopNameAge">
+              <label>{teams[i].name}</label>
+              <label>{teams[i].mediaAge}</label>
             </div>
           )
         }
       }
       
-
       return(
         <div className="colTOP">
           <div className="topPainel">
@@ -35,13 +71,13 @@ class Top extends React.Component {
               <div>
                 <h4>Highest avg age</h4>
                 <div className="backgroundList">
-                  {rows}
+                  {rowsHigh}
                 </div>
               </div>
               <div>
                 <h4>Lowest avg age</h4>
                 <div className="backgroundList">
-                  {rows}
+                  {rowsLow}
                 </div>
               </div>
             </div>

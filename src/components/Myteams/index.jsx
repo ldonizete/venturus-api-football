@@ -9,8 +9,8 @@ function Myteams(props) {
       <div className="painelMyTeams">
         <div className="rowMyteamsTitle">
           <h1>My teams</h1>
-          <Link to="/team/createTeams" className="linkBtnTeams">
-            <button src="/team/createTeams" className="btAddTeams" type="button">
+          <Link to="/create" className="linkBtnTeams">
+            <button src="/create" className="btAddTeams" type="button">
               <GoPlus className="iconAdd"/>
             </button>
           </Link>

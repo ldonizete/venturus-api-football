@@ -5,9 +5,10 @@ import Radio from '@material-ui/core/Radio';
 import ChipInput from 'material-ui-chip-input';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Search from '../../components/Search';
+import Camp from '../../components/Camp';
+import { Link } from 'react-router-dom';
 
 const options = ['4-4-2', '1-1-8', '4-1-4-1', '4-5-1', '4-6-0', '5-4-1'];
-
 
 function Create(props) {
   const [selectedValue, setSelectedValue] = React.useState('a');
@@ -29,7 +30,7 @@ function Create(props) {
             <div className="rowTeam">
               <div className="colName">
                 <div className="inputPainel">
-                  <label>Team Name</label>
+                  <label className="labelCreate">Team Name</label>
                   <TextField
                     id="outlined-helperText"
                     label="Insert team name"
@@ -37,7 +38,7 @@ function Create(props) {
                   />
                 </div>
                 <div className="inputPainel">
-                  <label>Description</label>
+                  <label className="labelCreate">Description</label>
                   <TextField
                     id="outlined-multiline-static"
                     multiline
@@ -45,19 +46,17 @@ function Create(props) {
                     variant="outlined"
                   />
                 </div>
-
-                
               </div>
               <div className="colWebsite">
                 <div className="inputPainel">
-                  <label>Team website</label>
+                  <label className="labelCreate">Team website</label>
                   <TextField
                     id="outlined-helperText"
                     label="http://myteam.com"
                     variant="outlined"
                   />
                 </div>
-                <label>Team type</label>
+                <label className="labelCreate">Team type</label>
                 <div>
                   <Radio
                     checked={selectedValue === 'a'}
@@ -66,7 +65,7 @@ function Create(props) {
                     name="radio-button-demo"
                     inputProps={{ 'aria-label': 'A' }}
                   />
-                  <label className="radioLabel">Real</label>
+                  <label>Real</label>
                   <Radio
                     checked={selectedValue === 'b'}
                     onChange={handleChange}
@@ -74,10 +73,10 @@ function Create(props) {
                     name="radio-button-demo"
                     inputProps={{ 'aria-label': 'B' }}
                   />
-                  <label className="radioLabel">Fantasy</label>
+                  <label>Fantasy</label>
                 </div>
                 <div className="painelTags">
-                  <label>Tags</label>
+                  <label className="labelCreate">Tags</label>
                   <ChipInput
                     defaultValue={['BR', 'PTW', 'Attack']}
                   />
@@ -87,7 +86,7 @@ function Create(props) {
             <h3>CONFIGURE SQUAD</h3>
             <div className="rowTeam">
               <div>
-                <label>Formation</label>
+                <label className="labelCreate">Formation</label>
                 <Autocomplete
                   value={value}
                   onChange={(event, newValue) => {
@@ -103,9 +102,13 @@ function Create(props) {
                   renderInput={(params) => <TextField {...params}
                     variant="outlined" />}
                 />
+                <Camp />
+                <Link to="/" className="linkBtnTeams">
+                  <button className="btnSave">Save</button>
+                </Link>
               </div>
               <div>
-                <label>Search Players</label>
+                <label className="labelCreate">Search Players</label>
                 <Search />
               </div>
             </div>

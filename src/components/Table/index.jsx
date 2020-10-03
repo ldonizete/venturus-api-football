@@ -49,6 +49,7 @@ const headCells = [
 function EnhancedTableHead(props) {
   const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
+    console.log(3);
     onRequestSort(event, property);
   };
 
@@ -101,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 550,
+    marginLeft: "15px",
   },
   visuallyHidden: {
     border: 0,
@@ -134,6 +136,7 @@ export default function EnhancedTable(props) {
   };
 
   const handleSelectAllClick = (event) => {
+    console.log(1);
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n.name);
       setSelected(newSelecteds);
@@ -143,6 +146,7 @@ export default function EnhancedTable(props) {
   };
 
   const handleClick = (event, name) => {
+    console.log(2);
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
@@ -194,11 +198,8 @@ export default function EnhancedTable(props) {
 
                   return (
                     <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
+                      // onClick={(event) => handleClick(event, row.name)}
                       aria-checked={isItemSelected}
-                      tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
                     >
@@ -206,9 +207,10 @@ export default function EnhancedTable(props) {
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.description}</TableCell>
-                      <TableCell className="cellAction">
-                        <IconDelete />
+                      <TableCell  align="right" className="cellAction">
+                        <IconDelete abs="teste"/>
                         <IconEdit />
+                        <button type="button" onClick={console.log(124)}>Click Me!</button>
                       </TableCell>
                     </TableRow>
                   );

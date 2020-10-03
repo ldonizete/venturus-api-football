@@ -1,77 +1,49 @@
-import fetch from 'cross-fetch';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import Times from '../../Data/times';
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
+const filter = createFilterOptions();
 
-export default function Search() {
-  const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState([]);
-  const loading = open && options.length === 0;
+export default function FreeSoloCreateOption() {
+  const [value] = React.useState(null);
 
-  React.useEffect(() => {
-    let active = true;
+  var players = [];
 
-    if (!loading) {
-      return undefined;
+  for (let i = 0; i < Times.length; i++) {
+    for (let k = 0; k < Times[i].players[0].length; k++) {
+      const player = Times[i].players[0][k];
+      players.push(player);
     }
-
-    (async () => {
-      const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
-      await sleep(1e3); // For demo purposes.
-      const countries = await response.json();
-
-      if (active) {
-        setOptions(Object.keys(countries).map((key) => countries[key].item[0]));
-      }
-    })();
-
-    return () => {
-      active = false;
-    };
-  }, [loading]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+  }
 
   return (
     <Autocomplete
-      id="asynchronous-demo"
+    
+      value={value}
+      filterOptions={(options, params) => {
+        const filtered = filter(options, params);
+
+        return filtered;
+      }}
+      selectOnFocus
+      clearOnBlur
+      handleHomeEndKeys
+      id="searchId"
+      options={players}
+      getOptionLabel={(option) => {
+        // Value selected with enter, right from the input
+        if (typeof option === 'string') {
+          return option;
+        }
+        
+        return option.player_name;
+      }}
+      renderOption={(option) => option.player_name}
       style={{ width: 300 }}
-      open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      onClose={() => {
-        setOpen(false);
-      }}
-      getOptionSelected={(option, value) => option.name === value.name}
-      getOptionLabel={(option) => option.name}
-      options={options}
-      loading={loading}
+      freeSolo
       renderInput={(params) => (
-        <TextField
-          {...params}
-          variant="outlined"
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                {params.InputProps.endAdornment}
-              </React.Fragment>
-            ),
-          }}
-        />
+        <TextField {...params} variant="outlined" />
       )}
     />
   );
