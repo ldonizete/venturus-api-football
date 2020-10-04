@@ -55,3 +55,23 @@ h3{
   border-radius: 4px;
   width: 100%;
 }
+
+.tags{
+  border: 1px solid rgba(0,0,0,0.23);
+  display: block;
+  padding: 10.5px 14px;
+  min-height: 86px;
+  border-radius: 4px;
+}
+
+.tagsinput-tag{
+  color: white;
+  display: inline-block;
+  padding: 2px 10px 2px 15px;
+  font-size: 13px;
+  font-weight: 400;
+  margin-right: 5px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  background-color: #d242ac;
+}

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
-import ChipInput from 'material-ui-chip-input';
+import TagsInput from 'react-tagsinput'
+import 'react-tagsinput/react-tagsinput.css'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Search from '../../components/Search';
 import Camp from '../../components/Camp';
 import { Link } from 'react-router-dom';
+import DragAndDropPlayers from '../../components/Drag-players'
 
 const options = ['4-4-2', '1-1-8', '4-1-4-1', '4-5-1', '4-6-0', '5-4-1'];
 
@@ -19,6 +21,11 @@ function Create(props) {
 
   const [value, setValue] = React.useState(options[0]);
   const [inputValue, setInputValue] = React.useState('');
+  const [stateTags, setStateTags] = useState({tags:[]})
+
+  const handleChangeTag = (tags) =>{
+    setStateTags({tags})
+  }
 
   return(
     <div className="mainCreate">
@@ -77,8 +84,11 @@ function Create(props) {
                 </div>
                 <div className="painelTags">
                   <label className="labelCreate">Tags</label>
-                  <ChipInput
-                    defaultValue={['BR', 'PTW', 'Attack']}
+                  <TagsInput 
+                    className="tags"
+                    value={stateTags.tags}
+                    onChange={handleChangeTag}
+                    tagProps={{className: 'tagsinput-tag'}}
                   />
                 </div>
               </div>

@@ -5,8 +5,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 export default function Delete(props) {
   console.log(props);
   return (
-      <IconButton component="span" >
-       <DeleteIcon onClick={console.log("test1")}/>
+      <IconButton component="span" onClick={props.remove} >
+       <DeleteIcon />
       </IconButton>
   );
 }

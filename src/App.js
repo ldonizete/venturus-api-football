@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './page/Home';
@@ -9,10 +9,8 @@ import Times from './Data/times';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-class App extends Component {
-  state = {
-    teams: Times
-  }
+function App() {
+  const [state] = useState({teams: Times});
 
   //############################################################
   // CHAMANDO A API PARA PEGAR OS TIMES
@@ -68,24 +66,23 @@ class App extends Component {
   //   this.setState({teams:teamsAndPlayers})
   // }
 
-  render() {
-    return (
-      <div className="App">
-        <Router>
-          <Header />
-            <Switch>
-              <Route exact path="/">
-                <Home teams={this.state.teams}/>
-              </Route>
-              <Route exact path="/create">
-                <Create />
-              </Route>
-          </Switch>
-          <Footer />
-        </Router>
-      </div>
-    );
-  }
+  
+  return (
+    <div className="App">
+      <Router>
+        <Header />
+          <Switch>
+            <Route exact path="/">
+              <Home teams={state.teams}/>
+            </Route>
+            <Route exact path="/create">
+              <Create />
+            </Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </div>
+  );
 }
 
 export default App;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './index.css';
 import PropTypes from 'prop-types';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,10 +10,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
-import IconDelete from './IconButton/Delete';
-import IconEdit from './IconButton/Edit';
-import './index.css';
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Create';
+import { Link } from 'react-router-dom';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -49,7 +50,6 @@ const headCells = [
 function EnhancedTableHead(props) {
   const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
-    console.log(3);
     onRequestSort(event, property);
   };
 
@@ -118,9 +118,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable(props) {
+  const [tableState, setTableState] = useState(props);
   const rows = props.teams != null && props.teams.length>0 ? props.teams : [];
-  console.log(2,rows);
-
+  
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('description');
@@ -136,7 +136,6 @@ export default function EnhancedTable(props) {
   };
 
   const handleSelectAllClick = (event) => {
-    console.log(1);
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n.name);
       setSelected(newSelecteds);
@@ -145,30 +144,21 @@ export default function EnhancedTable(props) {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    console.log(2);
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    setSelected(newSelected);
-  };
-
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+  const deleteItem = (rowTable) => {
+    
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      if(row.team_id == rowTable.team_id)
+      {
+        rows.splice(i,1);
+      }
+    }
+    setTableState({teams: rows})
+  }
 
   return (
     <div className={classes.root}>
@@ -199,18 +189,23 @@ export default function EnhancedTable(props) {
                   return (
                     <TableRow
                       // onClick={(event) => handleClick(event, row.name)}
-                      aria-checked={isItemSelected}
-                      key={row.name}
+                      // aria-checked={isItemSelected}
+                      key={`row-${index}`}
                       selected={isItemSelected}
                     >
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.description}</TableCell>
-                      <TableCell  align="right" className="cellAction">
-                        <IconDelete abs="teste"/>
-                        <IconEdit />
-                        <button type="button" onClick={console.log(124)}>Click Me!</button>
+                      <TableCell >
+                      <IconButton component="span" onClick={()=>{deleteItem(row)}} >
+                        <DeleteIcon />
+                      </IconButton>
+                      <Link to="/create" className="linkBtnTeams">
+                        <IconButton component="span">
+                          <EditIcon />
+                        </IconButton>
+                      </Link>
                       </TableCell>
                     </TableRow>
                   );
