@@ -27,6 +27,19 @@ function Create(props) {
     setStateTags({tags})
   }
 
+  const saveClick = () =>
+  {
+    var teamName = document.getElementById("teamName");
+    var description = document.getElementById("description");
+    var website = document.getElementById("website");
+    var type = selectedValue === 'a' ? "Real" : "Fantasy";
+    var tags = stateTags;
+    var formation = value;
+    var players = document.getElementById("droppable");
+
+    console.log(players);
+  }
+
   return(
     <div className="mainCreate">
       <div className="painelCreate">
@@ -39,7 +52,7 @@ function Create(props) {
                 <div className="inputPainel">
                   <label className="labelCreate">Team Name</label>
                   <TextField
-                    id="outlined-helperText"
+                    id="teamName"
                     label="Insert team name"
                     variant="outlined"
                   />
@@ -47,7 +60,7 @@ function Create(props) {
                 <div className="inputPainel">
                   <label className="labelCreate">Description</label>
                   <TextField
-                    id="outlined-multiline-static"
+                    id="description"
                     multiline
                     rows={7}
                     variant="outlined"
@@ -58,7 +71,7 @@ function Create(props) {
                 <div className="inputPainel">
                   <label className="labelCreate">Team website</label>
                   <TextField
-                    id="outlined-helperText"
+                    id="website"
                     label="http://myteam.com"
                     variant="outlined"
                   />
@@ -89,6 +102,7 @@ function Create(props) {
                     value={stateTags.tags}
                     onChange={handleChangeTag}
                     tagProps={{className: 'tagsinput-tag'}}
+                    focusedClassName="focused"
                   />
                 </div>
               </div>
@@ -113,9 +127,14 @@ function Create(props) {
                     variant="outlined" />}
                 />
                 <Camp />
-                <Link to="/" className="linkBtnTeams">
-                  <button className="btnSave">Save</button>
-                </Link>
+                {/* <Link to="/" className="linkBtnTeams"> */}
+                  <button 
+                    className="btnSave"
+                    onClick={() => {saveClick()}}
+                  >
+                    Save
+                  </button>
+                {/* </Link> */}
               </div>
               <div>
                 <label className="labelCreate">Search Players</label>

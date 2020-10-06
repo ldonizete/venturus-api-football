@@ -8,6 +8,7 @@ const filter = createFilterOptions();
 
 export default function FreeSoloCreateOption() {
   const [value, setValue] = React.useState(null);
+  const [pickedPlayers, setPickedPlayer] = React.useState([]);
   
 
   var players = [];
@@ -22,7 +23,6 @@ export default function FreeSoloCreateOption() {
   return (
     <>
       <Autocomplete
-        value={value}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
 
@@ -44,16 +44,35 @@ export default function FreeSoloCreateOption() {
           if(newValue!=null)
           {
             setValue(newValue);
+            if(pickedPlayers.length>0)
+            {
+              var repeatPlayer = 0;
+              for (let i = 0; i < pickedPlayers.length; i++) {
+                const player = pickedPlayers[i];
+                if(player.player_id == newValue.player_id)
+                {
+                  repeatPlayer++;
+                }
+              }
+
+              if(repeatPlayer==0) {
+                setPickedPlayer(pickedPlayers => [...pickedPlayers, newValue])
+              }
+            }
+            else
+            {
+              setPickedPlayer(pickedPlayers => [...pickedPlayers, newValue])
+            }
           } 
         }}
         renderOption={(option) => option.player_name}
-        style={{ width: 300 }}
+        style={{ width: 350 }}
         freeSolo
         renderInput={(params) => (
           <TextField {...params} variant="outlined" />
         )}
       />
-      <DragAndDropPlayers player={value}/>
+      <DragAndDropPlayers players={pickedPlayers}/>
     </>
   );
 }
