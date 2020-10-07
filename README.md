@@ -1,8 +1,7 @@
 # Desafio Venturus ReactJS
 
 ## Descrição do projeto
-Sistema de gerenciamento de times de futebol consumindo a [API]
-(https://www.api-football.com), para trazer os times e os jogadores, 
+Sistema de gerenciamento de times de futebol consumindo a [API](https://www.api-football.com), para trazer os times e os jogadores, 
 listando os times que faz parte da liga e ordenando os top 5 times com jogadores com mais idade avançada e o outro com menos idade avançada.
 
 ### Tecnologia utilizada
