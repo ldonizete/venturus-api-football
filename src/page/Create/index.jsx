@@ -127,14 +127,14 @@ function Create(props) {
                     variant="outlined" />}
                 />
                 <Camp />
-                {/* <Link to="/" className="linkBtnTeams"> */}
+                <Link to="/" className="linkBtnTeams">
                   <button 
                     className="btnSave"
                     onClick={() => {saveClick()}}
                   >
                     Save
                   </button>
-                {/* </Link> */}
+                </Link>
               </div>
               <div>
                 <label className="labelCreate">Search Players</label>
